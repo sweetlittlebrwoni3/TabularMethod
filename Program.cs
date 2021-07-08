@@ -10,6 +10,7 @@ namespace TabularMethod
     {
         static void Main(string[] args)
         {
+            
         }
     }
 }
