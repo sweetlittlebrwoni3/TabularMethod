@@ -20,13 +20,13 @@ namespace TabularMethod
                     minterms[i] = new string(minterms[i].Insert(0, "0").ToCharArray ());
                 }
             }
-            List<string> finalMinterms = new List<string>();
+            List<string> PIs = new List<string>();
             while (true)
             {
                 var comp = new Comparison(minterms);
                 foreach (string item in comp.LeftMinterms)
                 {
-                    finalMinterms.Add(item);
+                    PIs.Add(item);
                 }
                 minterms.Clear();
                 foreach(string item in comp.ChangedMinterms)
@@ -38,8 +38,8 @@ namespace TabularMethod
                     break;
                 }
             }
-            finalMinterms = finalMinterms.Distinct().ToList();
-            foreach (string item in finalMinterms)
+            PIs = PIs.Distinct().ToList();
+            foreach (string item in PIs)
             {
                 Console.WriteLine(item);
             }
