@@ -62,7 +62,6 @@ namespace TabularMethod
             return GetManyNum();
         }
         //___________________________________________________________________________________
-        //Tools for grouping
         public static int OneCounter(int num)
         {
             int sum = 0;
@@ -76,6 +75,52 @@ namespace TabularMethod
         public static int VariableCounter(List<int> minterms)
         {
             return Convert.ToString(minterms.Max(), 2).Length;
+        }
+        //___________________________________________________________________________________
+
+        public static bool PowerOf2Detector(int input)
+        {
+            while(input > 1)
+            {
+                if(input % 2 == 1)
+                {
+                    return false;
+                }
+                input /= 2;
+            }
+            return true;
+        }
+        public static List<string> Convert2Bin(List<int> minterms)
+        {
+            var result = new List<string>();
+            foreach(int item in minterms)
+            {
+                result.Add(Convert.ToString(item, 2));
+            }
+            return result;
+        }
+        public static int DifferenceCounter(string first , string second)
+        {
+            int dif = 0;
+            for(int i = 0; i < second.Length; i++)
+            {
+                if(first[i] != second[i])
+                {
+                    dif++;
+                }
+            }
+            return dif;
+        }
+        public static int DifferenceFinder(string first , string second)
+        {
+            for(int i =0; i<second.Length; i++)
+            {
+                if(first[i] != second[i])
+                {
+                    return i;
+                }
+            }
+            return -1;
         }
     }
 }

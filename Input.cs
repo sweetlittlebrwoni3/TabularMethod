@@ -8,7 +8,7 @@ namespace TabularMethod
 {
     public class Input
     {
-        public List<int> Minterms { get; set; }
+        public List<int> Minterms = new List<int>();
         
         public Input()
         {
