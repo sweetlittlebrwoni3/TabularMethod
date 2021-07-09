@@ -20,6 +20,7 @@ namespace TabularMethod
                     minterms[i] = new string(minterms[i].Insert(0, "0").ToCharArray ());
                 }
             }
+            List<string> mintermsCopy = new List<string>(minterms);
             List<string> PIs = new List<string>();
             while (true)
             {
@@ -39,6 +40,12 @@ namespace TabularMethod
                 }
             }
             PIs = PIs.Distinct().ToList();
+            var EPIRecognizer = new EPIrecongition(mintermsCopy , PIs);
+            foreach(string item in EPIRecognizer.EPIs)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("........................................");
             foreach (string item in PIs)
             {
                 Console.WriteLine(item);

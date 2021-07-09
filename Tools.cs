@@ -122,5 +122,21 @@ namespace TabularMethod
             }
             return -1;
         }
+        public static bool CanBeA(string minterm , string PI)
+        {
+            char[] ch = minterm.ToCharArray();
+            for (int i = 0; i < PI.Length; i++)
+            {
+                if(PI[i] == '_')
+                {
+                    ch[i] = '_';
+                }
+            }
+            if(new string(ch) == PI)
+            {
+                return true;
+            }
+            else { return false; }
+        }
     }
 }
