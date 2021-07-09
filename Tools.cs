@@ -138,5 +138,53 @@ namespace TabularMethod
             }
             else { return false; }
         }
+        public static int XCounter(string input)
+        {
+            int counter = 0;
+            char[] ch = input.ToCharArray();
+            foreach(char item in ch)
+            {
+                if (item == '_')
+                {
+                    counter++;
+                }
+            }
+            return counter;
+        }
+        public static string MostXFinder(List<string> list)
+        {
+            string max = list[0];
+            foreach(string item in list)
+            {
+                if(XCounter(max) < XCounter(item))
+                {
+                    max = item;
+                }
+            }
+            return max;
+        }
+        //Designed only for lists that have the index[0] item as an identifier
+        public static bool ListContains(List<string> theFirst , List<string> theSecond)
+        {
+            bool flag = true;
+            var container = new List<string>();
+            var sub = new List<string>();
+            for(int i=1; i < theFirst.Count(); i++)
+            {
+                container.Add(theFirst[i]);
+            }
+            for (int i = 1; i < theSecond.Count(); i++)
+            {
+                sub.Add(theSecond[i]);
+            }
+            foreach (string item in sub)
+            {
+                if (!container.Contains(item))
+                {
+                    flag = false;
+                }
+            }
+            return flag;
+        }
     }
 }

@@ -41,12 +41,34 @@ namespace TabularMethod
             }
             PIs = PIs.Distinct().ToList();
             var EPIRecognizer = new EPIrecongition(mintermsCopy , PIs);
-            foreach(string item in EPIRecognizer.EPIs)
+            var EPIlist = new List<string>(EPIRecognizer.EPIs);
+            foreach(string item in EPIlist)
             {
                 Console.WriteLine(item);
             }
             Console.WriteLine("........................................");
             foreach (string item in PIs)
+            {
+                Console.WriteLine(item);
+            }
+
+            //Going for the SEPIs
+            var LeftMinterms = new List<string>();
+            var LeftPIs = new List<string>();
+            foreach(List<string> list in EPIRecognizer.CheckList)
+            {
+                LeftMinterms.Add(list[0]);
+            }
+            foreach(string item in PIs)
+            {
+                if (!EPIlist.Contains(item))
+                {
+                    LeftPIs.Add(item);
+                }
+            }
+            var Sepi = new SEPIrecognition(LeftMinterms, LeftPIs);
+            Console.WriteLine("...............................................");
+            foreach(string item in Sepi.SEPIs)
             {
                 Console.WriteLine(item);
             }
