@@ -8,7 +8,12 @@ namespace TabularMethod
 {
     class Program
     {
-        
+        //Written by mohammad ebrahim pooya
+        //Student code : 97411315
+        //Copyrights C(with a circle) 2021 Ebrum Ir, Inc. All rights reserved.
+
+
+
         static void Main(string[] args)
         {
             var input = new Input();
