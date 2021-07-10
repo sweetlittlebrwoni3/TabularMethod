@@ -107,6 +107,8 @@ namespace TabularMethod
             {
                 Console.WriteLine(item);
             }
+            Console.WriteLine("Please press enter to exit the program");
+            Console.ReadLine();
         }
         
     }
