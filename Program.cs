@@ -8,16 +8,17 @@ namespace TabularMethod
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
             var input = new Input();
             List<string> minterms = new List<string>(Tools.Convert2Bin(input.Minterms));
             //Adding zeros at the start of numbers to have the same number of characters for each number
-            for(int i = 0; i < minterms.Count(); i++)
+            for (int i = 0; i < minterms.Count(); i++)
             {
-                while(minterms[i].Length < minterms[minterms.Count() - 1].Length)
+                while (minterms[i].Length < minterms[minterms.Count() - 1].Length)
                 {
-                    minterms[i] = new string(minterms[i].Insert(0, "0").ToCharArray ());
+                    minterms[i] = new string(minterms[i].Insert(0, "0").ToCharArray());
                 }
             }
             List<string> mintermsCopy = new List<string>(minterms);
@@ -30,48 +31,70 @@ namespace TabularMethod
                     PIs.Add(item);
                 }
                 minterms.Clear();
-                foreach(string item in comp.ChangedMinterms)
+                foreach (string item in comp.ChangedMinterms)
                 {
                     minterms.Add(item);
                 }
-                if(comp.IsNew == false)
+                if (comp.IsNew == false)
                 {
                     break;
                 }
             }
             PIs = PIs.Distinct().ToList();
-            var EPIRecognizer = new EPIrecongition(mintermsCopy , PIs);
-            var EPIlist = new List<string>(EPIRecognizer.EPIs);
-            foreach(string item in EPIlist)
+            bool IsFinished = false;
+            var Final = new List<string>();
+            while (IsFinished == false)
             {
-                Console.WriteLine(item);
-            }
-            Console.WriteLine("........................................");
-            foreach (string item in PIs)
-            {
-                Console.WriteLine(item);
-            }
+                var EPIRecognizer = new EPIrecongition(mintermsCopy, PIs);
+                var EPIlist = new List<string>(EPIRecognizer.EPIs);
 
-            //Going for the SEPIs
-            var LeftMinterms = new List<string>();
-            var LeftPIs = new List<string>();
-            foreach(List<string> list in EPIRecognizer.CheckList)
-            {
-                LeftMinterms.Add(list[0]);
-            }
-            foreach(string item in PIs)
-            {
-                if (!EPIlist.Contains(item))
+
+                //Going for the SEPIs
+                var LeftMinterms = new List<string>();
+                var LeftPIs = new List<string>();
+                foreach (List<string> list in EPIRecognizer.CheckList)
                 {
-                    LeftPIs.Add(item);
+                    LeftMinterms.Add(list[0]);
+                }
+                foreach (string item in PIs)
+                {
+                    if (!EPIlist.Contains(item))
+                    {
+                        LeftPIs.Add(item);
+                    }
+                }
+                var Sepi = new SEPIrecognition(LeftMinterms, LeftPIs);
+                foreach (string item in EPIlist)
+                {
+                    Final.Add(item);
+                }
+
+                //Repopulating the enteries.
+                mintermsCopy.Clear();
+                foreach (string item in LeftMinterms)
+                {
+                    mintermsCopy.Add(item);
+                }
+                PIs.Clear();
+                foreach (string item in Sepi.SEPIs)
+                {
+                    PIs.Add(item);
+                }
+                Final = Final.Distinct().ToList();
+                if (LeftMinterms.Count() == 0)
+                {
+                    IsFinished = true;
+                }
+                else
+                {
+                    IsFinished = false;
                 }
             }
-            var Sepi = new SEPIrecognition(LeftMinterms, LeftPIs);
-            Console.WriteLine("...............................................");
-            foreach(string item in Sepi.SEPIs)
+            foreach(string item in Final)
             {
                 Console.WriteLine(item);
             }
         }
+        
     }
 }
