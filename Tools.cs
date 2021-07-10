@@ -127,9 +127,9 @@ namespace TabularMethod
             char[] ch = minterm.ToCharArray();
             for (int i = 0; i < PI.Length; i++)
             {
-                if(PI[i] == '_')
+                if(PI[i] == 'X')
                 {
-                    ch[i] = '_';
+                    ch[i] = 'X';
                 }
             }
             if(new string(ch) == PI)
@@ -144,7 +144,7 @@ namespace TabularMethod
             char[] ch = input.ToCharArray();
             foreach(char item in ch)
             {
-                if (item == '_')
+                if (item == 'X')
                 {
                     counter++;
                 }

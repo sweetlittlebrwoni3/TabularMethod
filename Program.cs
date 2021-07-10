@@ -90,6 +90,14 @@ namespace TabularMethod
                     IsFinished = false;
                 }
             }
+            var Out = new Output(Final);
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("The Minterms are :");
+            Console.WriteLine(Out.result);
+            Console.WriteLine();
+            Console.WriteLine("And their binary form is:");
             foreach(string item in Final)
             {
                 Console.WriteLine(item);

@@ -27,7 +27,7 @@ namespace TabularMethod
                     {
                         IsNew = true;
                         var ch = first.ToCharArray();
-                        ch[Tools.DifferenceFinder(first, second)] = '_';
+                        ch[Tools.DifferenceFinder(first, second)] = 'X';
                         ChangedMinterms.Add(new string(ch));
                     }
                 }

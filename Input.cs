@@ -17,7 +17,6 @@ namespace TabularMethod
             Console.WriteLine("If you were hesitant whether you enter a specific minterm or not,");
             Console.WriteLine("just enter it again! We'll promise to count it once ;)");
             Minterms = Tools.GetManyNum("Please enter the Minterms here:").Distinct().ToList();
-            Console.WriteLine("Thanx!");
             Minterms.Sort();
         }
     }
